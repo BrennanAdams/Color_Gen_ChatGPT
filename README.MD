@@ -30,4 +30,4 @@ This is a web application that generates color palettes based on text prompts us
 
 2. Run Flask 
    ```shell
-   flask ru
+   flask run
