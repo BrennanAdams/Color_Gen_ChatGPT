@@ -7,9 +7,10 @@ config = dotenv_values(".env")
 openai.api_key = config['OPENAI_API_KEY']
 
 app = Flask(__name__, 
-    template_folder='templates'
+    template_folder='templates',
+    static_url_path='',
+    static_folder='static'
 )
-
 
 @app.route('/palette', methods=['POST'])
 def prompt_to_palette():
@@ -17,9 +18,8 @@ def prompt_to_palette():
     colors = get_colors(query)
     return {"colors": colors}
 
-
 def get_colors(message):
-    #here we actually send the request to openai
+    #creating the prompt to sent to the API, it is important to be as perciese as possible and to give examples of the desired output and the desired format of the output
     prompt = f"""
     You are a color palette generating assistant that responds to text prompts for color palettes.
     You should generate color palettes that fit the theme, mood, or instructions in the prompt.
@@ -30,6 +30,9 @@ def get_colors(message):
 
     Q: Convert the following verbal description of a color palette into a list of colors: sage, nature, earth
     A: ["#EDF1D6", "#9DC08B", "#609966", "#40513B"]
+
+    Q: Convert the following verbal description of a color palette into a list of colors: colors of the rainbow
+    A: ["#FF0000", "#FF7F00", "#FFFF00", "#00FF00", "#0000FF", "#4B0082", "#8B00FF"]
 
 
     Desired Format: a JSON array of hexadecimal color codes
