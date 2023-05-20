@@ -23,3 +23,11 @@ This is a web application that generates color palettes based on text prompts us
 
 3. Set up your OpenAI API credentials by creating a .env file and adding your API key:
     OPENAI_API_KEY=your-api-key
+
+## Starting Server
+
+1. Naviagte to the folder in the terminal 
+
+2. Run Flask 
+   ```shell
+   flask ru
